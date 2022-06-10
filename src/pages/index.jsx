@@ -24,6 +24,7 @@ export default function Home() {
                 console.log(response)
             } catch (error) {
                 console.log('Not authenticated')
+                console.log(error)
                 // alert(error)
                 Router.push('/login')
             }
@@ -59,8 +60,8 @@ export default function Home() {
                         <p className="font-semibold">Quem me deve</p>
                         {pessoas
                             .filter(elem => elem.value > 0)
-                            .map(elem => (
-                                <div className="flex mt-2 justify-between w-full">
+                            .map((elem, index) => (
+                                <div key={index} className="flex mt-2 justify-between w-full">
                                     <p>{elem.nome}</p>
                                     <p className={`text-green-600 font-semibold`}>
                                         {elem.value.toLocaleString('pt-br', {
@@ -76,8 +77,8 @@ export default function Home() {
                         <p className="font-semibold mt-6">Para quem eu devo</p>
                         {pessoas
                             .filter(elem => elem.value < 0)
-                            .map(elem => (
-                                <div className="flex mt-2 justify-between w-full">
+                            .map((elem, index) => (
+                                <div key={index} className="flex mt-2 justify-between w-full ">
                                     <p>{elem.nome}</p>
                                     <p className={`text-red-600 font-semibold`}>
                                         {elem.value.toLocaleString('pt-br', {
