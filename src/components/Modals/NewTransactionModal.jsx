@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
 
-
 export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransactions }) {
     const [description, setDescription] = useState('')
     const [value, setValue] = useState(0)
@@ -14,14 +13,14 @@ export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransa
         setIsModalOpened(false)
     }
 
-    function handleCreateTransaction(event) {
+    async function handleCreateTransaction(event) {
         await axios
             .post('/createtransaction', {
                 description: description,
                 value: value,
             })
             .then(response => {
-                setTransactions(previousTransactions => [...previousTransactions , response.data])
+                setTransactions(previousTransactions => [...previousTransactions, response.data])
             })
             .catch(error => {
                 console.log(error)
