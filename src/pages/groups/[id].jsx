@@ -111,9 +111,12 @@ export default function Group() {
                                         <p
                                             className={`flex-1 text-right ${
                                                 saldos[index] > 0
-                                            } ? 'text-green-500' : ${
-                                                saldos[index] < 0
-                                            } ? 'text-red-500' : '`}>
+                                                    ? 'text-green-500'
+                                                    : saldos[index] < 0
+                                                    ? 'text-red-500'
+                                                    : ''
+                                            }
+                                               `}>
                                             {new Intl.NumberFormat('pt-BR', {
                                                 style: 'currency',
                                                 currency: 'BRL',
