@@ -10,7 +10,7 @@ import Router from 'next/router'
 export default function Group() {
     const router = useRouter()
     const { id } = router.query
-    const [group, setGroup] = useState([])
+    const [group, setGroup] = useState({})
 
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [transactions, setTransactions] = useState([
@@ -40,8 +40,8 @@ export default function Group() {
         async function fecthData() {
             try {
                 const response = await axios.get('/groupbyid/' + id)
-                setGroup(response.data)
                 console.log(response.data)
+                setGroup(response.data)
             } catch (error) {
                 console.log(error)
             }
