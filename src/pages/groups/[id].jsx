@@ -85,7 +85,7 @@ export default function Group() {
                         <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
                             <p className="text-lg font-bold text-primary">Participantes</p>
                             <div className="bg-background  rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
-                                {myGroup.participants.map((elem, index) => (
+                                {group.participants.map((elem, index) => (
                                     <div key={index} className="w-full flex justify-between mb-2">
                                         <p className="font-medium flex-1">{elem}</p>
                                         <p className="">me deve</p>

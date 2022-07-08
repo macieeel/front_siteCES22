@@ -96,7 +96,7 @@ export default function Home(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
+                        <div className="h-full pt-8 flex-none w-1/3 bg-light-gray flex flex-col px-20 items-center">
                             <p className="text-lg font-bold text-primary">RESUMO</p>
                             <div className="bg-background h-64 rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
                                 <p className="font-semibold">Quem me deve</p>
