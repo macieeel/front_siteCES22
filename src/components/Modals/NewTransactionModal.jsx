@@ -31,7 +31,9 @@ export function NewTransactionModal({
             })
             .then(response => {
                 setTransactions(previousTransactions => [...previousTransactions, response.data])
-                setSaldos(previousSaldos => previousSaldos.map(elem => (elem += response.data)))
+                setSaldos(previousSaldos =>
+                    previousSaldos.map((elem, index) => (elem += response.data[index]))
+                )
             })
             .catch(error => {
                 console.log(error)
