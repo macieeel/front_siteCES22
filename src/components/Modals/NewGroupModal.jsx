@@ -38,10 +38,10 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions
         //     { user: 'Eleven', value: value, description: description, createdAt: new Date() },
         // ])
         await axios
-            .post('/creategroup', {
+            .post('/makegroup', {
                 group_name: name,
-                emails_array: participantsArray,
-                description: description,
+                // emails_array: participantsArray,
+                // description: description,
             })
             .then(response => {
                 Router.push('/')

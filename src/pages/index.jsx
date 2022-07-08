@@ -71,12 +71,12 @@ export default function Home(props) {
                                 </p>
                                 <p className="font-bold mt-4">Seus Grupos</p>
                                 <div className="flex">
-                                    {groups.map((elem, index) => (
+                                    {user.groups.map(elem => (
                                         <GroupCard
-                                            key={index}
-                                            id={index}
-                                            name={elem.name}
-                                            value={50}
+                                            key={elem.id}
+                                            id={elem.id}
+                                            name={elem.nome}
+                                            // value={50}
                                         />
                                     ))}
                                 </div>
@@ -121,7 +121,7 @@ export default function Home(props) {
                                         </div>
                                     ))}
                             </div>
-                            <Button title="Ver Detalhes" style="text-sm" />
+                            <Button title="Ver Detalhes" style="text-sm" onClick={createGroup} />
                         </div>
                     </div>
                 </>
