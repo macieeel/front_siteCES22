@@ -37,7 +37,7 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions
         //     ...prevTransactions,
         //     { user: 'Eleven', value: value, description: description, createdAt: new Date() },
         // ])
-        axios
+        await axios
             .post('/creategroup', {
                 group_name: name,
                 emails_array: participantsArray,
