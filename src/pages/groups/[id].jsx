@@ -102,7 +102,11 @@ export default function Group() {
                                 ))}
                             </div>
 
-                            <Button title="Adicionar Participantes" style="text-sm" />
+                            <Button
+                                title="Adicionar Participantes"
+                                style="text-sm"
+                                onClick={() => setIsAddParticipantsModalOpened(true)}
+                            />
                         </div>
                     </div>
                 </>
