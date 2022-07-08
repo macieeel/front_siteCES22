@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
 import { IoCloseSharp } from 'react-icons/io5'
-import axios from '../..axios'
+import axios from '../../axios'
 // Modal.setAppElement('#root')
 
 export function NewGroupModal({ isModalOpened, setIsModalOpened, userId }) {
