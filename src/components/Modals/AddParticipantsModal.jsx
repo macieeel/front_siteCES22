@@ -26,7 +26,7 @@ export function AddParticipantsModal({ isModalOpened, setIsModalOpened, setParti
         )
     }
 
-    async function handleCreateGroup(event) {
+    async function handleCreateGroup() {
         await axios
             .post('/makegroup', {
                 emails_array: participantsArray,

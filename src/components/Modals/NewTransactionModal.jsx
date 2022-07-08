@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
+import { useRouter } from 'next/router'
 
 export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransactions }) {
+    const router = useRouter()
+    const { id } = router.query
+
     const [description, setDescription] = useState('')
     const [value, setValue] = useState(0)
     const isSubmitButtonDisabled = value == 0 || !description
@@ -13,9 +17,9 @@ export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransa
         setIsModalOpened(false)
     }
 
-    async function handleCreateTransaction(event) {
+    async function handleCreateTransaction() {
         await axios
-            .post('/createtransaction', {
+            .post('/createtransaction/' + id, {
                 description: description,
                 value: value,
             })

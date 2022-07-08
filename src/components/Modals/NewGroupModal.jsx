@@ -30,7 +30,7 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
         )
     }
 
-    async function handleCreateGroup(event) {
+    async function handleCreateGroup() {
         await axios
             .post('/makegroup', {
                 group_name: name,
