@@ -117,7 +117,7 @@ export default function Group() {
                                             {new Intl.NumberFormat('pt-BR', {
                                                 style: 'currency',
                                                 currency: 'BRL',
-                                            }).format(abs(saldos[index]))}
+                                            }).format(Math.abs(saldos[index]))}
                                         </p>
                                     </div>
                                 ))}
