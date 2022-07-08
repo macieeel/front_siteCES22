@@ -109,7 +109,7 @@ export default function Group() {
                                         )}
 
                                         <p
-                                            className={`flex-1 text-right ${
+                                            className={`flex-1 text-right font-semibold ${
                                                 saldos[index] > 0
                                                     ? 'text-green-500'
                                                     : saldos[index] < 0

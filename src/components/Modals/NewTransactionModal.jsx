@@ -32,7 +32,7 @@ export function NewTransactionModal({
             .then(response => {
                 setTransactions(previousTransactions => [...previousTransactions, response.data])
                 setSaldos(previousSaldos =>
-                    previousSaldos.map((elem, index) => (elem += response.data[index].valuePerUser))
+                    previousSaldos.map(elem => (elem += response.data.valuePerUser))
                 )
             })
             .catch(error => {
