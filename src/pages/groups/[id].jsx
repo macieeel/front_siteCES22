@@ -47,6 +47,7 @@ export default function Group() {
                 setTransactions(response.data.transactions)
             } catch (error) {
                 console.log(error)
+                Router.push('/')
             }
         }
         fecthData()
