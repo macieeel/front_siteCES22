@@ -41,7 +41,7 @@ export default function Group() {
     useEffect(() => {
         async function fecthData() {
             try {
-                const response = await axios.get('/groupbyid/' + id + '/')
+                const response = await axios.get('/groupbyid/' + id)
                 console.log(response.data)
                 setGroupName(response.data.nome)
                 setGroupParticipants(response.data.participants)
