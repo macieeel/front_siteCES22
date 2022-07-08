@@ -44,6 +44,7 @@ export default function Group() {
                 console.log(response.data)
                 setGroupName(response.data.nome)
                 setGroupParticipants(response.data.participants)
+                setTransactions(response.data.transactions)
             } catch (error) {
                 console.log(error)
             }
