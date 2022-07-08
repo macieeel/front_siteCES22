@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
 import { useRouter } from 'next/router'
+import axios from '../../axios'
 
 export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransactions }) {
     const router = useRouter()
