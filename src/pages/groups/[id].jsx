@@ -67,7 +67,7 @@ export default function Group() {
                         <div className="flex-grow px-32">
                             <div className="mt-8 pr-4">
                                 <h2 className="text-primary text-xl font-bold uppercase mb-4 text-center">
-                                    {group.name}
+                                    {group.nome}
                                 </h2>
 
                                 <p className="font-bold mt-4">Transações:</p>
