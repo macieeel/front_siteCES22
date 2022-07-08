@@ -23,9 +23,8 @@ export default function Home(props) {
         async function fecthData() {
             try {
                 const response = await axios.get('/@me')
-                setUser({ id: response.data.id, nome: response.nome })
+                setUser({ id: response.data.id, nome: response.data.nome })
                 setGroups(response.data.groups)
-                console.log(response.data)
             } catch (error) {
                 console.log('Not authenticated')
                 console.log(error)
