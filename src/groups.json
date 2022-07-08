@@ -1,0 +1,38 @@
+[
+    {
+        "name": "CES-22",
+        "participants": ["Eleven", "Educado", "PI"],
+        "transactions": [
+            {
+                "user": "Educado",
+                "value": 150,
+                "description": "Pizza",
+                "createdAt": "09/07/2022"
+            }
+        ]
+    },
+    {
+        "name": "AP 127",
+        "participants": ["Eleven", "Mamadeira", "Heinz"],
+        "transactions": [
+            {
+                "user": "Mamadeira",
+                "value": 100,
+                "description": "Galões de água",
+                "createdAt": "07/07/2022"
+            }
+        ]
+    },
+    {
+        "name": "AP 229",
+        "participants": ["Eleven", "Mamadeira", "Heinz"],
+        "transactions": [
+            {
+                "user": "Mamadeira",
+                "value": 100,
+                "description": "Galões de água",
+                "createdAt": "07/07/2022"
+            }
+        ]
+    }
+]

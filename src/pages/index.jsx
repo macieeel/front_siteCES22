@@ -5,31 +5,33 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import axios from '../axios'
 import Router from 'next/router'
+import groups from '../../src/groups.json'
+import { NewGroupModal } from '../components/Modals/NewGroupModal'
 
-export default function Home() {
+export default function Home(props) {
     const pessoas = [
         { nome: 'Mamadeira', value: 5 },
         { nome: 'Educado', value: 10 },
         { nome: 'Pi', value: -5 },
     ]
 
+    const [isModalOpened, setIsModalOpened] = useState(false)
+
     const [user, setUser] = useState('')
 
-    useEffect(() => {
-        ;(async () => {
-            console.log('a')
-            try {
-                const response = await axios.get('/@me')
-                setUser(response.data)
-                console.log(response)
-            } catch (error) {
-                console.log('Not authenticated')
-                console.log(error)
-                // alert(error)
-                Router.push('/login')
-            }
-        })()
-    }, [])
+    // useEffect(() => {
+    //     ;(async () => {
+    //         try {
+    //             const response = await axios.get('/@me')
+    //             setUser(response.data)
+    //             console.log(response.data)
+    //         } catch (error) {
+    //             console.log('Not authenticated')
+    //             console.log(error)
+    //             Router.push('/login')
+    //         }
+    //     })()
+    // }, [])
 
     return (
         <>
@@ -37,24 +39,27 @@ export default function Home() {
                 <title>Home</title>
             </Head>
             <Header />
-            <div className="max-w-screen-xl w-full h-full flex mx-auto px-8">
-                <div className="flex-grow">
+            <NewGroupModal isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
+            <div className="w-full h-full flex">
+                <div className="flex-grow px-32">
                     <div className="mt-8">
-                        <Button title="Criar Grupo" style="text-sm" />
+                        <Button
+                            title="Criar Grupo"
+                            style="text-sm"
+                            onClick={() => setIsModalOpened(true)}
+                        />
                         <p className="mt-8">
                             Bem vindo, <span className="font-bold">{user.nome}</span>
                         </p>
-                        <p className="font-bold mt-4">Seus Grupos:</p>
+                        <p className="font-bold mt-4">Seus Grupos</p>
                         <div className="flex">
-                            <GroupCard name="AP 127" value={50} />
-                            <GroupCard name="AP 229" value={20} />
-                            <GroupCard name="Churras" value={-10.5} />
-                            <GroupCard name="UBER SP" value={-30} />
-                            <GroupCard name="Casd" value={1.5} />
+                            {groups.map((elem, index) => (
+                                <GroupCard key={index} index={index} name={elem.name} value={50} />
+                            ))}
                         </div>
                     </div>
                 </div>
-                <div className="h-full pt-8 -mr-40 right-0 w-2/5 bg-light-gray flex flex-col pl-8 pr-48 items-center">
+                <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
                     <p className="text-lg font-bold text-primary">RESUMO</p>
                     <div className="bg-background h-64 rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
                         <p className="font-semibold">Quem me deve</p>
@@ -95,3 +100,39 @@ export default function Home() {
         </>
     )
 }
+
+// export async function getServerSideProps(context) {
+// const response = await Axios.get('https://jsonplaceholder.typicode.com/post/1')
+// if (!response) {
+//     return {
+//         notFound: true,
+//     }
+// }
+// try {
+//     const response = await axios.get('/@me')
+// console.log('TESTE')
+//     console.log(response)
+// console.log(response)
+// return {
+// props: {},
+// }
+// } catch (error) {
+//     console.log(error)
+//     return {
+//         redirect: {
+//             permanent: false,
+//             destination: '/login',
+//         },
+//         props: {},
+//     }
+// }
+// }
+
+// export async function getServerSideProps(ctx) {
+//     const response = await fetch('http://localhost:5000/@me')
+//     console.log('po')
+//     console.log(response)
+//     return {
+//         props: {},
+//     }
+// }
