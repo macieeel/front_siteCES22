@@ -19,84 +19,102 @@ export default function Home(props) {
 
     const [user, setUser] = useState('')
 
-    // useEffect(() => {
-    //     ;(async () => {
-    //         try {
-    //             const response = await axios.get('/@me')
-    //             setUser(response.data)
-    //             console.log(response.data)
-    //         } catch (error) {
-    //             console.log('Not authenticated')
-    //             console.log(error)
-    //             Router.push('/login')
-    //         }
-    //     })()
-    // }, [])
+    useEffect(() => {
+        ;(async () => {
+            try {
+                const response = await axios.get('/@me')
+                setUser(response.data)
+                console.log(response.data)
+            } catch (error) {
+                console.log('Not authenticated')
+                console.log(error)
+                Router.push('/login')
+            }
+        })()
+    }, [])
 
     return (
         <>
-            <Head>
-                <title>Home</title>
-            </Head>
-            <Header />
-            <NewGroupModal isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
-            <div className="w-full h-full flex">
-                <div className="flex-grow px-32">
-                    <div className="mt-8">
-                        <Button
-                            title="Criar Grupo"
-                            style="text-sm"
-                            onClick={() => setIsModalOpened(true)}
-                        />
-                        <p className="mt-8">
-                            Bem vindo, <span className="font-bold">{user.nome}</span>
-                        </p>
-                        <p className="font-bold mt-4">Seus Grupos</p>
-                        <div className="flex">
-                            {groups.map((elem, index) => (
-                                <GroupCard key={index} index={index} name={elem.name} value={50} />
-                            ))}
+            {user ? (
+                <>
+                    <Head>
+                        <title>Home</title>
+                    </Head>
+                    <Header />
+                    <NewGroupModal
+                        isModalOpened={isModalOpened}
+                        setIsModalOpened={setIsModalOpened}
+                    />
+                    <div className="w-full h-full flex">
+                        <div className="flex-grow px-32">
+                            <div className="mt-8">
+                                <Button
+                                    title="Criar Grupo"
+                                    style="text-sm"
+                                    onClick={() => setIsModalOpened(true)}
+                                />
+                                <p className="mt-8">
+                                    Bem vindo, <span className="font-bold">{user.nome}</span>
+                                </p>
+                                <p className="font-bold mt-4">Seus Grupos</p>
+                                <div className="flex">
+                                    {groups.map((elem, index) => (
+                                        <GroupCard
+                                            key={index}
+                                            index={index}
+                                            name={elem.name}
+                                            value={50}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
+                            <p className="text-lg font-bold text-primary">RESUMO</p>
+                            <div className="bg-background h-64 rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
+                                <p className="font-semibold">Quem me deve</p>
+                                {pessoas
+                                    .filter(elem => elem.value > 0)
+                                    .map((elem, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex mt-2 justify-between w-full">
+                                            <p>{elem.nome}</p>
+                                            <p className={`text-green-600 font-semibold`}>
+                                                {elem.value.toLocaleString('pt-br', {
+                                                    style: 'currency',
+                                                    currency: 'BRL',
+                                                })}
+                                            </p>
+                                        </div>
+                                    ))}
+                                <span className="text-primary mt-1 cursor-pointer hover:opacity-70 transition-opacity font-semibold text-xs w-full">
+                                    Cobrar
+                                </span>
+                                <p className="font-semibold mt-6">Para quem eu devo</p>
+                                {pessoas
+                                    .filter(elem => elem.value < 0)
+                                    .map((elem, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex mt-2 justify-between w-full ">
+                                            <p>{elem.nome}</p>
+                                            <p className={`text-red-600 font-semibold`}>
+                                                {elem.value.toLocaleString('pt-br', {
+                                                    style: 'currency',
+                                                    currency: 'BRL',
+                                                })}
+                                            </p>
+                                        </div>
+                                    ))}
+                            </div>
+                            <Button title="Ver Detalhes" style="text-sm" />
                         </div>
                     </div>
-                </div>
-                <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
-                    <p className="text-lg font-bold text-primary">RESUMO</p>
-                    <div className="bg-background h-64 rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
-                        <p className="font-semibold">Quem me deve</p>
-                        {pessoas
-                            .filter(elem => elem.value > 0)
-                            .map((elem, index) => (
-                                <div key={index} className="flex mt-2 justify-between w-full">
-                                    <p>{elem.nome}</p>
-                                    <p className={`text-green-600 font-semibold`}>
-                                        {elem.value.toLocaleString('pt-br', {
-                                            style: 'currency',
-                                            currency: 'BRL',
-                                        })}
-                                    </p>
-                                </div>
-                            ))}
-                        <span className="text-primary mt-1 cursor-pointer hover:opacity-70 transition-opacity font-semibold text-xs w-full">
-                            Cobrar
-                        </span>
-                        <p className="font-semibold mt-6">Para quem eu devo</p>
-                        {pessoas
-                            .filter(elem => elem.value < 0)
-                            .map((elem, index) => (
-                                <div key={index} className="flex mt-2 justify-between w-full ">
-                                    <p>{elem.nome}</p>
-                                    <p className={`text-red-600 font-semibold`}>
-                                        {elem.value.toLocaleString('pt-br', {
-                                            style: 'currency',
-                                            currency: 'BRL',
-                                        })}
-                                    </p>
-                                </div>
-                            ))}
-                    </div>
-                    <Button title="Ver Detalhes" style="text-sm" />
-                </div>
-            </div>
+                </>
+            ) : (
+                <></>
+            )}
         </>
     )
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
 import { IoCloseSharp } from 'react-icons/io5'
+import axios from '../axios'
 // Modal.setAppElement('#root')
 
 export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions }) {
@@ -30,12 +31,25 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions
         )
     }
 
-    function handleCreateGroup(event) {
-        event.preventDefault()
-        setTransactions(prevTransactions => [
-            ...prevTransactions,
-            { user: 'Eleven', value: value, description: description, createdAt: new Date() },
-        ])
+    async function handleCreateGroup(event) {
+        // event.preventDefault()
+        // setTransactions(prevTransactions => [
+        //     ...prevTransactions,
+        //     { user: 'Eleven', value: value, description: description, createdAt: new Date() },
+        // ])
+        axios.post
+            .post('/createGroup', {
+                group_name: name,
+                emails_array: participantsArray,
+                description: description,
+            })
+            .then(response => {
+                Router.push('/')
+            })
+            .catch(error => {
+                console.log(error)
+                alert(error)
+            })
         handleCloseModal()
     }
     return (
