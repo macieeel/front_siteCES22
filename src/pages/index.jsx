@@ -73,7 +73,7 @@ export default function Home(props) {
                         setGroups={setGroups}
                     />
                     <div className="w-full h-full flex">
-                        <div className="flex-grow px-32">
+                        <div className="w-2/3 px-32">
                             <div className="mt-8">
                                 <Button
                                     title="Criar Grupo"
@@ -84,7 +84,7 @@ export default function Home(props) {
                                     Bem vindo, <span className="font-bold">{user.nome}</span>
                                 </p>
                                 <p className="font-bold mt-4">Seus Grupos</p>
-                                <div className="flex">
+                                <div className="flex flex-wrap">
                                     {groups.map(elem => (
                                         <GroupCard
                                             key={elem.id}

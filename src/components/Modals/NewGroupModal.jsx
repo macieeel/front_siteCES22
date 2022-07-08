@@ -40,7 +40,7 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
         await axios
             .post('/makegroup', {
                 group_name: name,
-                // emails_array: participantsArray,
+                emails_array: participantsArray,
                 // description: description,
             })
             .then(response => {
