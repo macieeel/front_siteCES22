@@ -5,6 +5,7 @@ import { Button } from '../../components/Button'
 import { TransactionsTable } from '../../components/TransactionsTable'
 import { useEffect, useState } from 'react'
 import { NewTransactionModal } from '../../components/Modals/NewTransactionModal'
+import axios from '../axios'
 import Router from 'next/router'
 
 export default function Group() {
