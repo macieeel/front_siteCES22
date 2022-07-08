@@ -44,7 +44,7 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions
                 // description: description,
             })
             .then(response => {
-                Router.push('/')
+                // Router.push('/')
             })
             .catch(error => {
                 console.log(error)

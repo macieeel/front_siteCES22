@@ -17,18 +17,31 @@ export default function Home(props) {
 
     const [isModalOpened, setIsModalOpened] = useState(false)
 
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState({})
+    const [groups, setGroups] = useState([])
 
     useEffect(() => {
         async function fecthData() {
             try {
                 const response = await axios.get('/@me')
                 setUser(response.data)
-                console.log(response.data)
             } catch (error) {
                 console.log('Not authenticated')
                 console.log(error)
                 Router.push('/login')
+            }
+        }
+        fecthData()
+    }, [])
+
+    useEffect(() => {
+        async function fecthData() {
+            try {
+                const response = await axios.get('/groupsbyuser')
+                setGroups(response.data)
+                console.log(response.data)
+            } catch (error) {
+                console.log(error)
             }
         }
         fecthData()
@@ -71,7 +84,7 @@ export default function Home(props) {
                                 </p>
                                 <p className="font-bold mt-4">Seus Grupos</p>
                                 <div className="flex">
-                                    {user.groups.map(elem => (
+                                    {groups.map(elem => (
                                         <GroupCard
                                             key={elem.id}
                                             id={elem.id}
