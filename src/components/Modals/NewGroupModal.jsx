@@ -2,10 +2,10 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
 import { IoCloseSharp } from 'react-icons/io5'
-import axios from '../axios'
+import axios from '../..axios'
 // Modal.setAppElement('#root')
 
-export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions }) {
+export function NewGroupModal({ isModalOpened, setIsModalOpened, userId }) {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [participant, setParticipant] = useState('')
@@ -37,8 +37,9 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions
         //     ...prevTransactions,
         //     { user: 'Eleven', value: value, description: description, createdAt: new Date() },
         // ])
-        axios.post
-            .post('/createGroup', {
+        axios
+            .post('/creategroup', {
+                user_id: userId,
                 group_name: name,
                 emails_array: participantsArray,
                 description: description,

@@ -44,6 +44,7 @@ export default function Home(props) {
                     <NewGroupModal
                         isModalOpened={isModalOpened}
                         setIsModalOpened={setIsModalOpened}
+                        userId={user.id}
                     />
                     <div className="w-full h-full flex">
                         <div className="flex-grow px-32">
@@ -61,7 +62,7 @@ export default function Home(props) {
                                     {groups.map((elem, index) => (
                                         <GroupCard
                                             key={index}
-                                            index={index}
+                                            id={index}
                                             name={elem.name}
                                             value={50}
                                         />
