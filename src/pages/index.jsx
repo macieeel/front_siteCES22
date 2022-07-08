@@ -44,7 +44,6 @@ export default function Home(props) {
                     <NewGroupModal
                         isModalOpened={isModalOpened}
                         setIsModalOpened={setIsModalOpened}
-                        userId={user.id}
                     />
                     <div className="w-full h-full flex">
                         <div className="flex-grow px-32">
