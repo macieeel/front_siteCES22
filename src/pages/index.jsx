@@ -38,7 +38,7 @@ export default function Home(props) {
         async function fecthData() {
             try {
                 const response = await axios.get('/groupsbyuser')
-                setGroups(response.data)
+                setGroups(response.data.groups)
                 console.log(response.data)
             } catch (error) {
                 console.log(error)
@@ -70,6 +70,7 @@ export default function Home(props) {
                     <NewGroupModal
                         isModalOpened={isModalOpened}
                         setIsModalOpened={setIsModalOpened}
+                        setGroups={setGroups}
                     />
                     <div className="w-full h-full flex">
                         <div className="flex-grow px-32">

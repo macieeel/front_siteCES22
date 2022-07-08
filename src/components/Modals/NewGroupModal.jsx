@@ -5,7 +5,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import axios from '../../axios'
 // Modal.setAppElement('#root')
 
-export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions }) {
+export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [participant, setParticipant] = useState('')
@@ -44,7 +44,7 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setTransactions
                 // description: description,
             })
             .then(response => {
-                // Router.push('/')
+                setGroups(previousGroups => [...previousGroups, response.data])
             })
             .catch(error => {
                 console.log(error)

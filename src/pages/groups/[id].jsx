@@ -3,14 +3,14 @@ import { Header } from '../../components/Header'
 import Head from 'next/head'
 import { Button } from '../../components/Button'
 import { TransactionsTable } from '../../components/TransactionsTable'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NewTransactionModal } from '../../components/Modals/NewTransactionModal'
 import Router from 'next/router'
 
 export default function Group() {
     const router = useRouter()
     const { id } = router.query
-    const [group, setGroup] = useState({})
+    const [group, setGroup] = useState([])
 
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [transactions, setTransactions] = useState([
