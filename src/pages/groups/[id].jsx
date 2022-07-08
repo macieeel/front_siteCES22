@@ -93,10 +93,12 @@ export default function Group() {
                         </div>
                         <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
                             <p className="text-lg font-bold text-primary">Participantes</p>
-                            <div className="bg-background  rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
-                                {groupParticipants.map((elem, index) => (
-                                    <div key={index} className="w-full flex justify-between mb-2">
-                                        <p className="font-medium flex-1">{elem}</p>
+                            <div className="bg-background rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
+                                {groupParticipants.map(elem => (
+                                    <div
+                                        key={elem.id}
+                                        className="w-full flex justify-between mb-2 last:mb-0">
+                                        <p className="font-medium flex-1">{elem.nome}</p>
                                         <p className="">me deve</p>
                                         <p className="flex-1 text-right">R$ 20, 00</p>
                                     </div>
