@@ -15,6 +15,7 @@ export default function Group() {
     const [groupName, setGroupName] = useState('')
     const [groupParticipants, setGroupParticipants] = useState([])
     const [transactions, setTransactions] = useState([])
+    const [saldos, setSaldos] = useState([])
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [isAddParticipantsModalOpened, setIsAddParticipantsModalOpened] = useState(false)
 
@@ -45,6 +46,7 @@ export default function Group() {
                 setGroupName(response.data.nome)
                 setGroupParticipants(response.data.participants)
                 setTransactions(response.data.transactions)
+                setSaldos(response.data.saldos)
             } catch (error) {
                 console.log(error)
                 Router.push('/')
@@ -65,6 +67,7 @@ export default function Group() {
                         isModalOpened={isModalOpened}
                         setIsModalOpened={setIsModalOpened}
                         setTransactions={setTransactions}
+                        setSaldos={setSaldos}
                     />
                     <AddParticipantsModal
                         isModalOpened={isAddParticipantsModalOpened}
@@ -94,13 +97,28 @@ export default function Group() {
                         <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
                             <p className="text-lg font-bold text-primary">Participantes</p>
                             <div className="bg-background rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
-                                {groupParticipants.map(elem => (
+                                {groupParticipants.map((elem, index) => (
                                     <div
                                         key={elem.id}
                                         className="w-full flex justify-between mb-2 last:mb-0">
                                         <p className="font-medium flex-1">{elem.nome}</p>
-                                        <p className="">me deve</p>
-                                        <p className="flex-1 text-right">R$ 20, 00</p>
+                                        {saldos[index] > 0 ? (
+                                            <p className="">me deve</p>
+                                        ) : (
+                                            <p className="">devo</p>
+                                        )}
+
+                                        <p
+                                            className={`flex-1 text-right ${
+                                                saldos[index] > 0
+                                            } 'text-green-500' : ${
+                                                saldos[index] < 0
+                                            } ? 'text-red-500' : '`}>
+                                            {new Intl.NumberFormat('pt-BR', {
+                                                style: 'currency',
+                                                currency: 'BRL',
+                                            }).format(saldos[index])}
+                                        </p>
                                     </div>
                                 ))}
                             </div>

@@ -4,7 +4,12 @@ import { Button } from '../Button'
 import { useRouter } from 'next/router'
 import axios from '../../axios'
 
-export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransactions }) {
+export function NewTransactionModal({
+    isModalOpened,
+    setIsModalOpened,
+    setTransactions,
+    setSaldos,
+}) {
     const router = useRouter()
     const { id } = router.query
 
@@ -26,6 +31,7 @@ export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransa
             })
             .then(response => {
                 setTransactions(previousTransactions => [...previousTransactions, response.data])
+                setSaldos(previousSaldos => previousSaldos.map(elem => (elem += response.data)))
             })
             .catch(error => {
                 console.log(error)
