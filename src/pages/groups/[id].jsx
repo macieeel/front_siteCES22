@@ -5,7 +5,7 @@ import { Button } from '../../components/Button'
 import { TransactionsTable } from '../../components/TransactionsTable'
 import { useEffect, useState } from 'react'
 import { NewTransactionModal } from '../../components/Modals/NewTransactionModal'
-import axios from '../axios'
+import axios from '../../axios'
 import Router from 'next/router'
 
 export default function Group() {
@@ -41,7 +41,7 @@ export default function Group() {
     useEffect(() => {
         async function fecthData() {
             try {
-                const response = await axios.get('/groupbyid/' + id)
+                const response = await axios.get('/groupbyid/' + id + '/')
                 console.log(response.data)
                 setGroupName(response.data.nome)
                 setGroupParticipants(response.data.participants)
