@@ -20,7 +20,7 @@ export default function Home(props) {
     const [user, setUser] = useState('')
 
     useEffect(() => {
-        ;(async () => {
+        async function fecthData() {
             try {
                 const response = await axios.get('/@me')
                 setUser(response.data)
@@ -30,8 +30,21 @@ export default function Home(props) {
                 console.log(error)
                 Router.push('/login')
             }
-        })()
+        }
+        fecthData()
     }, [])
+
+    async function createGroup() {
+        try {
+            const response = await axios.post('/creategroup', {
+                group_name: 'Group 1',
+            })
+            console.log(response.data)
+        } catch (error) {
+            console.log('Not authenticated')
+            console.log(error)
+        }
+    }
 
     return (
         <>
