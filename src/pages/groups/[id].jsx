@@ -7,17 +7,16 @@ import { useEffect, useState } from 'react'
 import { NewTransactionModal } from '../../components/Modals/NewTransactionModal'
 import axios from '../../axios'
 import Router from 'next/router'
+import { AddParticipantsModal } from '../../components/Modals/AddParticipantsModal'
 
 export default function Group() {
     const router = useRouter()
     const { id } = router.query
     const [groupName, setGroupName] = useState('')
     const [groupParticipants, setGroupParticipants] = useState([])
-
+    const [transactions, setTransactions] = useState([])
     const [isModalOpened, setIsModalOpened] = useState(false)
-    const [transactions, setTransactions] = useState([
-        { user: 'Mamadeira', value: 100, description: 'Galões de água', createdAt: new Date() },
-    ])
+    const [isAddParticipantsModalOpened, setIsAddParticipantsModalOpened] = useState(false)
 
     function handleDeleteTransaction(index) {
         const newTransactions = [...transactions]
@@ -64,6 +63,11 @@ export default function Group() {
                         isModalOpened={isModalOpened}
                         setIsModalOpened={setIsModalOpened}
                         setTransactions={setTransactions}
+                    />
+                    <AddParticipantsModal
+                        isModalOpened={isAddParticipantsModalOpened}
+                        setIsModalOpened={setIsAddParticipantsModalOpened}
+                        setParticipants={setGroupParticipants}
                     />
 
                     <div className="w-full h-full flex">

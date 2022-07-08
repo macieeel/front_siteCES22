@@ -12,6 +12,7 @@ export function ConfirmModal({ isModalOpened, setIsModalOpened, message, onConfi
     }
     return (
         <Modal
+            ariaHideApp={false}
             isOpen={isModalOpened}
             onRequestClose={handleCloseModal}
             className="px-8 py-10 bg-white rounded"

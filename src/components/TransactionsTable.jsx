@@ -45,7 +45,7 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                                     {new Intl.NumberFormat('pt-BR', {
                                         style: 'currency',
                                         currency: 'BRL',
-                                    }).format(elem.value / 5)}
+                                    }).format(elem.valuePerUser)}
                                 </td>
                                 <td className="px-4 py-2">{elem.description}</td>
                                 <td className="rounded-r px-4 py-2">

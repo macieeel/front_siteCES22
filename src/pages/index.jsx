@@ -5,7 +5,6 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import axios from '../axios'
 import Router from 'next/router'
-import groups from '../../src/groups.json'
 import { NewGroupModal } from '../components/Modals/NewGroupModal'
 
 export default function Home(props) {
@@ -24,24 +23,12 @@ export default function Home(props) {
         async function fecthData() {
             try {
                 const response = await axios.get('/@me')
-                setUser(response.data)
+                setUser({ id: response.data.id, nome: response.nome })
+                setGroups(response.data.groups)
             } catch (error) {
                 console.log('Not authenticated')
                 console.log(error)
                 Router.push('/login')
-            }
-        }
-        fecthData()
-    }, [])
-
-    useEffect(() => {
-        async function fecthData() {
-            try {
-                const response = await axios.get('/groupsbyuser')
-                setGroups(response.data.groups)
-                console.log(response.data)
-            } catch (error) {
-                console.log(error)
             }
         }
         fecthData()

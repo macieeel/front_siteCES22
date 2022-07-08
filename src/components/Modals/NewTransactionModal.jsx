@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Button } from '../Button'
 
-// Modal.setAppElement('#root')
 
 export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransactions }) {
     const [description, setDescription] = useState('')
@@ -16,15 +15,23 @@ export function NewTransactionModal({ isModalOpened, setIsModalOpened, setTransa
     }
 
     function handleCreateTransaction(event) {
-        event.preventDefault()
-        setTransactions(prevTransactions => [
-            ...prevTransactions,
-            { user: 'Eleven', value: value, description: description, createdAt: new Date() },
-        ])
+        await axios
+            .post('/createtransaction', {
+                description: description,
+                value: value,
+            })
+            .then(response => {
+                setTransactions(previousTransactions => [...previousTransactions , response.data])
+            })
+            .catch(error => {
+                console.log(error)
+                alert(error)
+            })
         handleCloseModal()
     }
     return (
         <Modal
+            ariaHideApp={false}
             isOpen={isModalOpened}
             onRequestClose={handleCloseModal}
             className="w-full max-w-xl p-8 bg-white rounded"

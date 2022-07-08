@@ -4,16 +4,12 @@ import { Button } from '../Button'
 import { IoCloseSharp } from 'react-icons/io5'
 import axios from '../../axios'
 
-export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
+export function AddParticipantsModal({ isModalOpened, setIsModalOpened, setParticipants }) {
     const [participant, setParticipant] = useState('')
     const [participantsArray, setParticipantsArray] = useState([])
-    const isSubmitButtonDisabled = !name || participantsArray.length == 0
+    const isSubmitButtonDisabled = participantsArray.length == 0
 
     function handleCloseModal() {
-        setName('')
-        setDescription('')
         setParticipant('')
         setParticipantsArray([])
         setIsModalOpened(false)
@@ -33,12 +29,10 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
     async function handleCreateGroup(event) {
         await axios
             .post('/makegroup', {
-                group_name: name,
                 emails_array: participantsArray,
-                // description: description,
             })
             .then(response => {
-                setGroups(previousGroups => [...previousGroups, response.data])
+                setParticipants(previousParticipants => [...previousParticipants, response.data])
             })
             .catch(error => {
                 console.log(error)
@@ -53,43 +47,13 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
             onRequestClose={handleCloseModal}
             className="w-full max-w-2xl p-8 bg-white rounded"
             overlayClassName="bg-black/60 inset-0 fixed flex justify-center items-center">
-            <h2 className="text-primary text-center font-bold text-xl mb-8 ">Criar Grupo</h2>
+            <h2 className="text-primary text-center font-bold text-xl mb-8 ">
+                Adicionar Parcipantes
+            </h2>
 
             <form className="">
                 <div className="flex">
                     <div className="pr-4 w-1/2 flex-none">
-                        <div className="mb-4">
-                            <label
-                                className="block text-gray-700 text-sm font-bold mb-2"
-                                htmlFor="name">
-                                Nome
-                            </label>
-                            <input
-                                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-xl w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary transition-all"
-                                type="text"
-                                id="name"
-                                placeholder="Qual o nome do grupo?"
-                                value={name}
-                                onChange={event => setName(event.target.value)}
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label
-                                className="block text-gray-700 text-sm font-bold mb-2"
-                                htmlFor="description">
-                                Descrição
-                            </label>
-                            <input
-                                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded-xl w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary transition-all"
-                                type="text"
-                                id="description"
-                                placeholder="Uma descrição para o grupo"
-                                value={description}
-                                onChange={event => setDescription(event.target.value)}
-                            />
-                        </div>
-
                         <div className="mb-6">
                             <label
                                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -141,7 +105,7 @@ export function NewGroupModal({ isModalOpened, setIsModalOpened, setGroups }) {
                         <div className="w-full flex justify-center self-end">
                             <Button
                                 primary
-                                title="Criar Grupo"
+                                title="Atualizar Grupo"
                                 onClick={handleCreateGroup}
                                 style="disabled:opacity-50"
                                 disabled={isSubmitButtonDisabled}
