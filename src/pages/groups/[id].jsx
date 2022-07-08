@@ -57,7 +57,7 @@ export default function Group() {
             {groupName != '' ? (
                 <>
                     <Head>
-                        <title>{'Grupo | ' + group.nome}</title>
+                        <title>{'Grupo | ' + groupName}</title>
                     </Head>
                     <Header />
                     <NewTransactionModal
