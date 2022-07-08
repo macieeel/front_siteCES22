@@ -10,7 +10,8 @@ import Router from 'next/router'
 export default function Group() {
     const router = useRouter()
     const { id } = router.query
-    const [group, setGroup] = useState({})
+    const [groupName, setGroupName] = useState('')
+    const [groupParticipants, setGroupParticipants] = useState([])
 
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [transactions, setTransactions] = useState([
@@ -41,7 +42,8 @@ export default function Group() {
             try {
                 const response = await axios.get('/groupbyid/' + id)
                 console.log(response.data)
-                setGroup(response.data)
+                setGroupName(response.data.nome)
+                setGroupParticipants(response.data.participants)
             } catch (error) {
                 console.log(error)
             }
@@ -51,7 +53,7 @@ export default function Group() {
 
     return (
         <>
-            {!!group ? (
+            {groupName != '' ? (
                 <>
                     <Head>
                         <title>{'Grupo | ' + group.nome}</title>
@@ -67,7 +69,7 @@ export default function Group() {
                         <div className="flex-grow px-32">
                             <div className="mt-8 pr-4">
                                 <h2 className="text-primary text-xl font-bold uppercase mb-4 text-center">
-                                    {group.nome}
+                                    {groupName}
                                 </h2>
 
                                 <p className="font-bold mt-4">Transações:</p>
@@ -85,7 +87,7 @@ export default function Group() {
                         <div className="h-full pt-8 w-1/3 bg-light-gray flex flex-col px-20 items-center">
                             <p className="text-lg font-bold text-primary">Participantes</p>
                             <div className="bg-background  rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
-                                {group.participants.map((elem, index) => (
+                                {groupParticipants.map((elem, index) => (
                                     <div key={index} className="w-full flex justify-between mb-2">
                                         <p className="font-medium flex-1">{elem}</p>
                                         <p className="">me deve</p>
