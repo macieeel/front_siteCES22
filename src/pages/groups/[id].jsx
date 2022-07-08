@@ -51,7 +51,7 @@ export default function Group() {
 
     return (
         <>
-            {group ? (
+            {!!group ? (
                 <>
                     <Head>
                         <title>{'Grupo | ' + group.nome}</title>
