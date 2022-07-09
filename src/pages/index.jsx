@@ -41,6 +41,7 @@ export default function Home() {
         try {
             const response = await axios.del('/paid/' + groupId)
             console.log(response.data)
+            Router.reload(window.location.pathname)
         } catch (error) {
             console.log('Not authenticated')
             console.log(error)
