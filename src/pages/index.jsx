@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import axios from '../axios'
 import Router from 'next/router'
 import { NewGroupModal } from '../components/Modals/NewGroupModal'
+import { ConfirmModal } from '../components/Modals/ConfirmModal'
 
 export default function Home() {
     const [isModalOpened, setIsModalOpened] = useState(false)
