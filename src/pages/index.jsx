@@ -9,7 +9,8 @@ import { NewGroupModal } from '../components/Modals/NewGroupModal'
 
 export default function Home() {
     const [isModalOpened, setIsModalOpened] = useState(false)
-
+    const [isConfirmModalOpened, setIsConfirmModalOpened] = useState(false)
+    const [currentId, setCurrentId] = useState(-1)
     const [user, setUser] = useState({})
     const [groups, setGroups] = useState([])
     const [saldoGrupos, setSaldoGrupos] = useState([])
@@ -30,11 +31,14 @@ export default function Home() {
         fecthData()
     }, [])
 
-    async function createGroup() {
+    function handleClick(index) {
+        setCurrentId(index)
+        setIsConfirmModalOpened(true)
+    }
+
+    async function handleMePagaram(groupId) {
         try {
-            const response = await axios.post('/creategroup', {
-                group_name: 'Group 1',
-            })
+            const response = await axios.del('/payed/' + groupId)
             console.log(response.data)
         } catch (error) {
             console.log('Not authenticated')
@@ -54,6 +58,13 @@ export default function Home() {
                         isModalOpened={isModalOpened}
                         setIsModalOpened={setIsModalOpened}
                         setGroups={setGroups}
+                    />
+
+                    <ConfirmModal
+                        isModalOpened={isConfirmModalOpened}
+                        setIsModalOpened={setIsConfirmModalOpened}
+                        message="Tem certeza que deseja confirmar que todos te pagaram?"
+                        onConfirm={() => handleMePagaram(currentId)}
                     />
                     <div className="w-full h-full flex">
                         <div className="w-2/3 px-32">
@@ -91,15 +102,22 @@ export default function Home() {
                                 {saldoGrupos.map((elem, index) => {
                                     if (elem > 0) {
                                         return (
-                                            <div
-                                                key={index}
-                                                className="flex mt-2 justify-between w-full">
-                                                <p>{groups[index].nome}</p>
-                                                <p className={`text-green-600 font-medium`}>
-                                                    {new Intl.NumberFormat('pt-BR', {
-                                                        style: 'currency',
-                                                        currency: 'BRL',
-                                                    }).format(Math.abs(elem))}
+                                            <div className="flex">
+                                                <div
+                                                    key={index}
+                                                    className="flex mt-2 justify-between w-full">
+                                                    <p>{groups[index].nome}</p>
+                                                    <p className={`text-green-600 font-medium`}>
+                                                        {new Intl.NumberFormat('pt-BR', {
+                                                            style: 'currency',
+                                                            currency: 'BRL',
+                                                        }).format(Math.abs(elem))}
+                                                    </p>
+                                                </div>
+                                                <p
+                                                    className="font-semibold text-small mb-2 cursor-pointer"
+                                                    onClick={() => handleClick(groups[index].id)}>
+                                                    Me pagaram
                                                 </p>
                                             </div>
                                         )
