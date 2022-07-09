@@ -103,7 +103,7 @@ export default function Home() {
                                 {saldoGrupos.map((elem, index) => {
                                     if (elem > 0) {
                                         return (
-                                            <div className="flex">
+                                            <div className="flex flex-col">
                                                 <div
                                                     key={index}
                                                     className="flex mt-2 justify-between w-full">
@@ -116,7 +116,7 @@ export default function Home() {
                                                     </p>
                                                 </div>
                                                 <p
-                                                    className="font-semibold text-small mb-2 cursor-pointer"
+                                                    className="font-semibold text-sm text-primary mb-2 cursor-pointer"
                                                     onClick={() => handleClick(groups[index].id)}>
                                                     Me pagaram
                                                 </p>
