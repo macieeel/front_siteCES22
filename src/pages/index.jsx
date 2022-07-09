@@ -50,7 +50,7 @@ export default function Home() {
 
     return (
         <>
-            {user ? (
+            {user.nome ? (
                 <>
                     <Head>
                         <title>Home</title>
