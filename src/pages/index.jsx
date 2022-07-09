@@ -53,7 +53,7 @@ export default function Home() {
             {user.nome ? (
                 <>
                     <Head>
-                        <title>Home</title>
+                        <title>AAAAAA</title>
                     </Head>
                     <Header />
                     <NewGroupModal
