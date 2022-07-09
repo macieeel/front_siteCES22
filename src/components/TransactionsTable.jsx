@@ -20,7 +20,7 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
             />
 
             <div className="">
-                <table className="w-full border-separate border-spacing-y-1.5">
+                <table className="w-full overflow-y-auto max-h-full border-separate border-spacing-y-1.5">
                     <thead className="text-left">
                         <tr className="text-primary">
                             <th className="px-4 font-semibold">Quem pagou</th>
@@ -31,7 +31,7 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                         </tr>
                     </thead>
 
-                    <tbody className="overflow-y-auto max-h-96">
+                    <tbody className="hover:opacity-70">
                         {transactions.map((elem, index) => (
                             <tr key={index} className="group bg-light-gray">
                                 <td className="rounded-l px-4 py-2">{elem.user}</td>
@@ -53,9 +53,9 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                                         new Date(elem.createdAt)
                                     )}
                                 </td>
-                                <td className="pl-2 bg-background invisible group-hover:visible hover:opacity-100 cursor-pointer text-red-500">
+                                {/* <td className="pl-2 bg-background invisible group-hover:visible hover:opacity-100 cursor-pointer text-red-500">
                                     <IoCloseSharp size={20} onClick={() => handleClick(index)} />
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>
