@@ -49,7 +49,9 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                                 </td>
                                 <td className="px-4 py-2">{elem.description}</td>
                                 <td className="rounded-r px-4 py-2">
-                                    {new Intl.DateTimeFormat('pt-BR').format(elem.createdAt)}
+                                    {new Intl.DateTimeFormat('pt-BR').format(
+                                        new Date(elem.createdAt)
+                                    )}
                                 </td>
                                 <td className="pl-2 bg-background invisible group-hover:visible hover:opacity-100 cursor-pointer text-red-500">
                                     <IoCloseSharp size={20} onClick={() => handleClick(index)} />
