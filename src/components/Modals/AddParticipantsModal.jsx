@@ -4,7 +4,7 @@ import { Button } from '../Button'
 import { IoCloseSharp } from 'react-icons/io5'
 import axios from '../../axios'
 
-export function AddParticipantsModal({ isModalOpened, setIsModalOpened, setParticipants }) {
+export function AddParticipantsModal({ isModalOpened, setIsModalOpened, groupId }) {
     const [participant, setParticipant] = useState('')
     const [participantsArray, setParticipantsArray] = useState([])
     const isSubmitButtonDisabled = participantsArray.length == 0
@@ -26,18 +26,17 @@ export function AddParticipantsModal({ isModalOpened, setIsModalOpened, setParti
         )
     }
 
-    async function handleCreateGroup() {
-        await axios
-            .post('/makegroup', {
+    async function handleAddParticipants() {
+        try {
+            const response = await axios.post('/addparticipants/add' + groupId, {
                 emails_array: participantsArray,
             })
-            .then(response => {
-                setParticipants(previousParticipants => [...previousParticipants, response.data])
-            })
-            .catch(error => {
-                console.log(error)
-                alert(error)
-            })
+            console.log(response.data)
+            Router.reload(window.location.pathname)
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
         handleCloseModal()
     }
     return (
@@ -106,7 +105,7 @@ export function AddParticipantsModal({ isModalOpened, setIsModalOpened, setParti
                             <Button
                                 primary
                                 title="Atualizar Grupo"
-                                onClick={handleCreateGroup}
+                                onClick={handleAddParticipants}
                                 style="disabled:opacity-50"
                                 disabled={isSubmitButtonDisabled}
                             />

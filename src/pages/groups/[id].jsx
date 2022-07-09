@@ -72,7 +72,7 @@ export default function Group() {
                     <AddParticipantsModal
                         isModalOpened={isAddParticipantsModalOpened}
                         setIsModalOpened={setIsAddParticipantsModalOpened}
-                        setParticipants={setGroupParticipants}
+                        groupId={id}
                     />
 
                     <div className="w-full h-full flex">
