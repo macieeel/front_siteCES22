@@ -84,7 +84,7 @@ export default function Home() {
                             <div className="bg-background rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
                                 <p className="font-semibold">Grupos Saldo Positivo</p>
                                 {saldoGrupos
-                                    .filter(elem => elem.value > 0)
+                                    .filter(elem => elem > 0)
                                     .map((elem, index) => (
                                         <div
                                             key={index}
@@ -103,7 +103,7 @@ export default function Home() {
                                 </span> */}
                                 <p className="font-semibold mt-6">Grupos Saldo Negativo</p>
                                 {saldoGrupos
-                                    .filter(elem => elem.value < 0)
+                                    .filter(elem => elem < 0)
                                     .map((elem, index) => (
                                         <div
                                             key={index}
