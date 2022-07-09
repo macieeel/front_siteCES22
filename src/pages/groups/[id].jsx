@@ -39,6 +39,7 @@ export default function Group() {
     }, [])
 
     useEffect(() => {
+        if (!router.isReady) return
         async function fecthData() {
             try {
                 const response = await axios.get('/groupbyid/' + id)
@@ -53,7 +54,7 @@ export default function Group() {
             }
         }
         fecthData()
-    }, [])
+    }, [router.isReady])
 
     return (
         <>
