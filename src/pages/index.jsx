@@ -7,17 +7,12 @@ import axios from '../axios'
 import Router from 'next/router'
 import { NewGroupModal } from '../components/Modals/NewGroupModal'
 
-export default function Home(props) {
-    const pessoas = [
-        { nome: 'Mamadeira', value: 5 },
-        { nome: 'Educado', value: 10 },
-        { nome: 'Pi', value: -5 },
-    ]
-
+export default function Home() {
     const [isModalOpened, setIsModalOpened] = useState(false)
 
     const [user, setUser] = useState({})
     const [groups, setGroups] = useState([])
+    const [saldoGrupos, setSaldoGrupos] = useState([])
 
     useEffect(() => {
         async function fecthData() {
@@ -25,6 +20,7 @@ export default function Home(props) {
                 const response = await axios.get('/@me')
                 setUser({ id: response.data.id, nome: response.data.nome })
                 setGroups(response.data.groups)
+                setSaldoGrupos(response.data.saldo_groups)
             } catch (error) {
                 console.log('Not authenticated')
                 console.log(error)
@@ -86,43 +82,43 @@ export default function Home(props) {
                         <div className="h-full pt-8 flex-none w-1/3 bg-light-gray flex flex-col px-20 items-center">
                             <p className="text-lg font-bold text-primary">RESUMO</p>
                             <div className="bg-background h-64 rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
-                                <p className="font-semibold">Quem me deve</p>
-                                {pessoas
+                                <p className="font-semibold">Grupos Saldo Positivo</p>
+                                {saldoGrupos
                                     .filter(elem => elem.value > 0)
                                     .map((elem, index) => (
                                         <div
                                             key={index}
                                             className="flex mt-2 justify-between w-full">
-                                            <p>{elem.nome}</p>
-                                            <p className={`text-green-600 font-semibold`}>
-                                                {elem.value.toLocaleString('pt-br', {
+                                            <p>{groups[index].nome}</p>
+                                            <p className={`text-green-600 font-medium`}>
+                                                {new Intl.NumberFormat('pt-BR', {
                                                     style: 'currency',
                                                     currency: 'BRL',
-                                                })}
+                                                }).format(Math.abs(elem))}
                                             </p>
                                         </div>
                                     ))}
-                                <span className="text-primary mt-1 cursor-pointer hover:opacity-70 transition-opacity font-semibold text-xs w-full">
+                                {/* <span className="text-primary mt-1 cursor-pointer hover:opacity-70 transition-opacity font-semibold text-xs w-full">
                                     Cobrar
-                                </span>
-                                <p className="font-semibold mt-6">Para quem eu devo</p>
+                                </span> */}
+                                <p className="font-semibold mt-6">Grupos Saldo Negativo</p>
                                 {pessoas
                                     .filter(elem => elem.value < 0)
                                     .map((elem, index) => (
                                         <div
                                             key={index}
                                             className="flex mt-2 justify-between w-full ">
-                                            <p>{elem.nome}</p>
+                                            <p>{groups[index].nome}</p>
                                             <p className={`text-red-600 font-semibold`}>
-                                                {elem.value.toLocaleString('pt-br', {
+                                                {new Intl.NumberFormat('pt-BR', {
                                                     style: 'currency',
                                                     currency: 'BRL',
-                                                })}
+                                                }).format(Math.abs(elem))}
                                             </p>
                                         </div>
                                     ))}
                             </div>
-                            <Button title="Ver Detalhes" style="text-sm" onClick={createGroup} />
+                            {/* <Button title="Ver Detalhes" style="text-sm" onClick={createGroup} /> */}
                         </div>
                     </div>
                 </>

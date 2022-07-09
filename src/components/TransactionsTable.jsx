@@ -19,7 +19,7 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                 onConfirm={() => handleDeleteTransaction(currentIndex)}
             />
 
-            <div className="overflow-y-auto max-h-96">
+            <div className="">
                 <table className="w-full border-separate border-spacing-y-1.5">
                     <thead className="text-left">
                         <tr className="text-primary">
@@ -31,7 +31,7 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className="overflow-y-auto max-h-96">
                         {transactions.map((elem, index) => (
                             <tr key={index} className="group bg-light-gray">
                                 <td className="rounded-l px-4 py-2">{elem.user}</td>
