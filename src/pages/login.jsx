@@ -2,7 +2,7 @@ import { Button } from '../components/Button'
 import { useState } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
-
+import Link from 'next/link'
 import axios from '../axios'
 
 export default function Login() {
@@ -70,11 +70,11 @@ export default function Login() {
                                     value={senha}
                                     onChange={event => setSenha(event.target.value)}
                                 />
-                                <a
-                                    className="mt-1 ml-1 text-xs text-primary font-semibold hover:opacity-70 transition-opacity"
-                                    href="/">
-                                    Esqueceu sua senha?
-                                </a>
+                                <Link href="/">
+                                    <a className="mt-1 ml-1 text-xs text-primary font-semibold hover:opacity-70 transition-opacity">
+                                        Esqueceu sua senha?
+                                    </a>
+                                </Link>
                             </div>
 
                             <div className="w-full flex justify-center">
@@ -85,11 +85,11 @@ export default function Login() {
                         <div className="w-full flex flex-col items-center justify-center text-sm pt-6">
                             <div className="">
                                 Se ainda não tem conta, inscreva-se{' '}
-                                <a
-                                    href="/signin"
-                                    className="font-bold text-primary hover:opacity-70 transition-opacity">
-                                    aqui
-                                </a>
+                                <Link href="/signin">
+                                    <a className="font-bold text-primary hover:opacity-70 transition-opacity">
+                                        aqui
+                                    </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
