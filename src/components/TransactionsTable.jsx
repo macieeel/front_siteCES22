@@ -20,7 +20,7 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
             />
 
             <div className="">
-                <table className="w-full overflow-y-auto max-h-[30rem] border-separate border-spacing-y-1.5">
+                <table className="w-full overflow-y-auto max-h-[26rem] border-separate border-spacing-y-1.5">
                     <thead className="text-left">
                         <tr className="text-primary">
                             <th className="px-4 font-semibold">Quem pagou</th>
