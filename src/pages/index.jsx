@@ -102,7 +102,7 @@ export default function Home() {
                                     Cobrar
                                 </span> */}
                                 <p className="font-semibold mt-6">Grupos Saldo Negativo</p>
-                                {pessoas
+                                {saldoGrupos
                                     .filter(elem => elem.value < 0)
                                     .map((elem, index) => (
                                         <div
