@@ -39,7 +39,7 @@ export default function Home() {
 
     async function handleMePagaram(groupId) {
         try {
-            const response = await axios.del('/paid/' + groupId)
+            const response = await axios.delete('/paid/' + groupId)
             console.log(response.data)
             Router.reload(window.location.pathname)
         } catch (error) {
@@ -104,10 +104,8 @@ export default function Home() {
                                 {saldoGrupos.map((elem, index) => {
                                     if (elem > 0) {
                                         return (
-                                            <div className="flex flex-col w-full">
-                                                <div
-                                                    key={index}
-                                                    className="flex mt-2 justify-between w-full">
+                                            <div key={index} className="flex flex-col w-full">
+                                                <div className="flex mt-2 justify-between w-full">
                                                     <p>{groups[index].nome}</p>
                                                     <p className={`text-green-600 font-medium`}>
                                                         {new Intl.NumberFormat('pt-BR', {
