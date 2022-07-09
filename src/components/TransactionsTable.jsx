@@ -19,8 +19,8 @@ export function TransactionsTable({ transactions, handleDeleteTransaction }) {
                 onConfirm={() => handleDeleteTransaction(currentIndex)}
             />
 
-            <div className="">
-                <table className="w-full overflow-y-auto max-h-96 border-separate border-spacing-y-1.5">
+            <div className="overflow-y-auto max-h-[30rem] ">
+                <table className="w-full border-separate border-spacing-y-1.5">
                     <thead className="text-left">
                         <tr className="text-primary">
                             <th className="px-4 font-semibold">Quem pagou</th>
