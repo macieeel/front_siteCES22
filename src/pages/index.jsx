@@ -83,40 +83,54 @@ export default function Home() {
                             <p className="text-lg font-bold text-primary">RESUMO</p>
                             <div className="bg-background rounded-xl w-full my-8 py-4 px-6 flex flex-col items-center">
                                 <p className="font-semibold">Grupos Saldo Positivo</p>
-                                {saldoGrupos
-                                    .filter(elem => elem > 0)
-                                    .map((elem, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex mt-2 justify-between w-full">
-                                            <p>{groups[index].nome}</p>
-                                            <p className={`text-green-600 font-medium`}>
-                                                {new Intl.NumberFormat('pt-BR', {
-                                                    style: 'currency',
-                                                    currency: 'BRL',
-                                                }).format(Math.abs(elem))}
-                                            </p>
-                                        </div>
-                                    ))}
+                                {saldoGrupos.filter(elem => elem > 0).length == 0 ? (
+                                    <p>-----</p>
+                                ) : (
+                                    <></>
+                                )}
+                                {saldoGrupos.map((elem, index) => {
+                                    if (elem > 0) {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="flex mt-2 justify-between w-full">
+                                                <p>{groups[index].nome}</p>
+                                                <p className={`text-green-600 font-medium`}>
+                                                    {new Intl.NumberFormat('pt-BR', {
+                                                        style: 'currency',
+                                                        currency: 'BRL',
+                                                    }).format(Math.abs(elem))}
+                                                </p>
+                                            </div>
+                                        )
+                                    }
+                                })}
                                 {/* <span className="text-primary mt-1 cursor-pointer hover:opacity-70 transition-opacity font-semibold text-xs w-full">
                                     Cobrar
                                 </span> */}
                                 <p className="font-semibold mt-6">Grupos Saldo Negativo</p>
-                                {saldoGrupos
-                                    .filter(elem => elem < 0)
-                                    .map((elem, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex mt-2 justify-between w-full ">
-                                            <p>{groups[index].nome}</p>
-                                            <p className={`text-red-600 font-semibold`}>
-                                                {new Intl.NumberFormat('pt-BR', {
-                                                    style: 'currency',
-                                                    currency: 'BRL',
-                                                }).format(Math.abs(elem))}
-                                            </p>
-                                        </div>
-                                    ))}
+                                {saldoGrupos.filter(elem => elem < 0).length == 0 ? (
+                                    <p>-----</p>
+                                ) : (
+                                    <></>
+                                )}
+                                {saldoGrupos.map((elem, index) => {
+                                    if (elem < 0) {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="flex mt-2 justify-between w-full ">
+                                                <p>{groups[index].nome}</p>
+                                                <p className={`text-red-600 font-semibold`}>
+                                                    {new Intl.NumberFormat('pt-BR', {
+                                                        style: 'currency',
+                                                        currency: 'BRL',
+                                                    }).format(Math.abs(elem))}
+                                                </p>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                             {/* <Button title="Ver Detalhes" style="text-sm" onClick={createGroup} /> */}
                         </div>
