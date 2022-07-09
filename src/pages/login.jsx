@@ -32,8 +32,10 @@ export default function Login() {
                 <title>Login</title>
             </Head>
             <div className="flex h-full">
-                <div className="w-1/3 bg-primary h-full flex items-center justify-center">
-                    <p className="text-lg font-medium text-white h-full">Pixzada</p>
+                <div className="w-1/3 bg-primary h-full">
+                    <p className="text-3xl font-medium text-white h-full flex items-center justify-center">
+                        Pixzada
+                    </p>
                 </div>
                 <div className="flex flex-grow mx-4 justify-center items-center">
                     <div className="w-full max-w-xl bg-white rounded-xl px-8 pt-6 pb-8 mb-4">
