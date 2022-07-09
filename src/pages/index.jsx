@@ -116,7 +116,7 @@ export default function Home() {
                                                     </p>
                                                 </div>
                                                 <p
-                                                    className="font-semibold text-sm text-primary mb-2 cursor-pointer"
+                                                    className="font-semibold text-sm text-primary text-right mb-2 cursor-pointer"
                                                     onClick={() => handleClick(groups[index].id)}>
                                                     Me pagaram
                                                 </p>
