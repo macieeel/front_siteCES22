@@ -32,7 +32,9 @@ export default function Login() {
                 <title>Login</title>
             </Head>
             <div className="flex h-full">
-                <div className="w-1/3 bg-primary"></div>
+                <div className="w-1/3 bg-primary flex align-center justify-center">
+                    <p className="text-lg font-medium">Pixzada</p>
+                </div>
                 <div className="flex flex-grow mx-4 justify-center items-center">
                     <div className="w-full max-w-xl bg-white rounded-xl px-8 pt-6 pb-8 mb-4">
                         <form className="" method="POST">

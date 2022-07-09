@@ -54,7 +54,7 @@ export function Header() {
                             Sair
                         </button>
                         {/* </Link> */}
-                        <Link href="/login">
+                        {/* <Link href="/login">
                             <a
                                 className={` block mt-4 lg:inline-block lg:mt-0 mr-8 hover:text-white transition-colors`}>
                                 Login
@@ -65,7 +65,7 @@ export function Header() {
                                 className={` block mt-4 lg:inline-block lg:mt-0 mr-8 hover:text-white transition-colors`}>
                                 Inscreva-se
                             </a>
-                        </Link>
+                        </Link> */}
                     </div>
                 </nav>
             </div>
