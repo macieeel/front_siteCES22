@@ -39,7 +39,7 @@ export default function Home() {
 
     async function handleMePagaram(groupId) {
         try {
-            const response = await axios.del('/payed/' + groupId)
+            const response = await axios.del('/paid/' + groupId)
             console.log(response.data)
         } catch (error) {
             console.log('Not authenticated')
@@ -103,7 +103,7 @@ export default function Home() {
                                 {saldoGrupos.map((elem, index) => {
                                     if (elem > 0) {
                                         return (
-                                            <div className="flex flex-col">
+                                            <div className="flex flex-col w-full">
                                                 <div
                                                     key={index}
                                                     className="flex mt-2 justify-between w-full">
