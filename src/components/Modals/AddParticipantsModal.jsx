@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import { Button } from '../Button'
 import { IoCloseSharp } from 'react-icons/io5'
 import axios from '../../axios'
+import Router from 'next/router'
 
 export function AddParticipantsModal({ isModalOpened, setIsModalOpened, groupId }) {
     const [participant, setParticipant] = useState('')
@@ -28,7 +29,7 @@ export function AddParticipantsModal({ isModalOpened, setIsModalOpened, groupId 
 
     async function handleAddParticipants() {
         try {
-            const response = await axios.post('/addparticipants/add' + groupId, {
+            const response = await axios.post('/addparticipants/add/' + groupId, {
                 emails_array: participantsArray,
             })
             console.log(response.data)
